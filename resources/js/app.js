@@ -10,8 +10,11 @@ Vue.component(
     'example-component',
      require('./components/ExampleComponent.vue').default);
 
-
+     Vue.component(
+        'second-component',
+         require('./components/Example2Component.vue').default);
 const app = new Vue({
     el: '#app',
     router,
+    
 });

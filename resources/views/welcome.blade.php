@@ -14,7 +14,9 @@
     </head>
     <body>
     
-     <div id="app"></div>
-     <router-view></router-view>
+     <div id="app">
+       <router-view></router-view>
+     </div>
+    
     </body>
 </html>
