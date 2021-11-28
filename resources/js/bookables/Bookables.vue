@@ -1,8 +1,21 @@
 <template>
  <div>
- Rows is: {{rows}}
+
  <div v-if="loading"><h1><B>Chargement de données ...</B></h1></div>
    <div v-else>
+   <div class="row mb-4" v-for="row in rows" :key="'row'+row">
+     <div class="col" v-for="(bookable,column) in bookablesInRow(row)" :key="'row'+row+column">
+       <bookable-list-item 
+     
+         :item-title="bookable.title"
+         :item-content="bookable.content"
+         v-bind:price="12000"
+      >
+  </bookable-list-item>
+     </div>
+      <div class="col" v-for="p in placeholdersInRow(row)" :key="'placeholder'+row+p"> </div>
+   </div>
+   <!--
   <bookable-list-item 
      
       :item-title="bookable.title"
@@ -12,6 +25,7 @@
       :key="index"
       >
   </bookable-list-item>
+  -->
   </div>
   <!--
   <bookable-list-item :item-title="bookable1.title" :item-content="bookable1.content" v-bind:price="10000"></bookable-list-item>
@@ -45,6 +59,15 @@ export default {
       rows(){
           return this.bookables==null ? 0 : Math.ceil(this.bookables.length / this.columns);
       }
+    },
+    methods:{
+        bookablesInRow(row){
+           return this.bookables.slice((row-1)*this.columns,row*this.columns /*length*/);
+        },
+        placeholdersInRow(row){
+           return this.columns - this.bookablesInRow(row).length;
+        },
+
     },
     /*
     beforeCreate(){
@@ -96,7 +119,7 @@ export default {
             ];
             this.loading=false;
             
-        },8000);
+        },3000);
         /*
         setTimeout(()=>{
             this.bookable1.title="Tu es encore ici ?";

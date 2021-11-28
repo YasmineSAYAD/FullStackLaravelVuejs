@@ -2121,6 +2121,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2142,6 +2156,16 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     rows: function rows() {
       return this.bookables == null ? 0 : Math.ceil(this.bookables.length / this.columns);
+    }
+  },
+  methods: {
+    bookablesInRow: function bookablesInRow(row) {
+      return this.bookables.slice((row - 1) * this.columns, row * this.columns
+      /*length*/
+      );
+    },
+    placeholdersInRow: function placeholdersInRow(row) {
+      return this.columns - this.bookablesInRow(row).length;
     }
   },
 
@@ -2187,7 +2211,7 @@ __webpack_require__.r(__webpack_exports__);
         content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic"
       }];
       _this.loading = false;
-    }, 8000);
+    }, 3000);
     /*
     setTimeout(()=>{
         this.bookable1.title="Tu es encore ici ?";
@@ -38054,24 +38078,45 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._v("\nRows is: " + _vm._s(_vm.rows) + "\n"),
     _vm.loading
       ? _c("div", [
           _c("h1", [_c("B", [_vm._v("Chargement de données ...")])], 1),
         ])
       : _c(
           "div",
-          _vm._l(_vm.bookables, function (bookable, index) {
-            return _c("bookable-list-item", {
-              key: index,
-              attrs: {
-                "item-title": bookable.title,
-                "item-content": bookable.content,
-                price: 12000,
-              },
-            })
+          _vm._l(_vm.rows, function (row) {
+            return _c(
+              "div",
+              { key: "row" + row, staticClass: "row mb-4" },
+              [
+                _vm._l(_vm.bookablesInRow(row), function (bookable, column) {
+                  return _c(
+                    "div",
+                    { key: "row" + row + column, staticClass: "col" },
+                    [
+                      _c("bookable-list-item", {
+                        attrs: {
+                          "item-title": bookable.title,
+                          "item-content": bookable.content,
+                          price: 12000,
+                        },
+                      }),
+                    ],
+                    1
+                  )
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.placeholdersInRow(row), function (p) {
+                  return _c("div", {
+                    key: "placeholder" + row + p,
+                    staticClass: "col",
+                  })
+                }),
+              ],
+              2
+            )
           }),
-          1
+          0
         ),
   ])
 }
