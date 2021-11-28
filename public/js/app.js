@@ -2114,11 +2114,8 @@ __webpack_require__.r(__webpack_exports__);
       bookable1: {
         title: "What is Lorem Ipsum",
         content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic"
-      },
-      bookable2: {
-        title: "What is Lorem Ipsum ??",
-        content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic"
-      }
+      } //bookable2:null,
+
     };
   },
 
@@ -2131,25 +2128,34 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     console.log('created');
-    console.log(this.bookable1);
-    console.log(this.bookable2); //reactivity
+    console.log(this.bookable1); // console.log(this.bookable2);
+    //reactivity
 
     setTimeout(function () {
       _this.bookable1.title = "Titre";
+      /* this.bookable2={
+           title="What is Lorem Ipsum ??";
+           content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic";
+       }*/
     }, 5000);
-  }
+    setTimeout(function () {
+      _this.bookable1.title = "Tu es encore ici ?";
+    }, 8000);
+  },
+
   /*
   beforeMount(){
       console.log('before mount');
   },
   */
+  mounted: function mounted() {
+    var _this2 = this;
 
-  /*
-  mounted(){
-      console.log('mounted');
-  },
-  */
-
+    console.log('mounted');
+    setTimeout(function () {
+      _this2.itemTitle = "Aaaaaaaah ?";
+    }, 1500);
+  }
   /*
   beforeDestroy(){
       console.log('before destroy');
@@ -38002,14 +38008,6 @@ var render = function () {
           "item-title": _vm.bookable1.title,
           "item-content": _vm.bookable1.content,
           price: 10000,
-        },
-      }),
-      _vm._v(" "),
-      _c("bookable-list-item", {
-        attrs: {
-          "item-title": _vm.bookable2.title,
-          "item-content": _vm.bookable2.content,
-          price: 12000,
         },
       }),
       _vm._v(" "),
