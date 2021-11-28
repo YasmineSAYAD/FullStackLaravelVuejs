@@ -2077,6 +2077,9 @@ __webpack_require__.r(__webpack_exports__);
     "itemTitle": String,
     "itemContent": String,
     "price": Number
+  },
+  mounted: function mounted() {
+    console.log(this.itemTitle); // this.itemTitle='New title';
   }
 });
 
@@ -2100,11 +2103,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     "bookable-list-item": _BookableListItem__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      bookable1: {
+        title: "What is Lorem Ipsum",
+        content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic"
+      },
+      bookable2: {
+        title: "What is Lorem Ipsum ??",
+        content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic"
+      }
+    };
+  },
+
+  /*
+  beforeCreate(){
+      console.log('before create');
+  },
+  */
+  created: function created() {
+    var _this = this;
+
+    console.log('created');
+    console.log(this.bookable1);
+    console.log(this.bookable2); //reactivity
+
+    setTimeout(function () {
+      _this.bookable1.title = "Titre";
+    }, 5000);
   }
+  /*
+  beforeMount(){
+      console.log('before mount');
+  },
+  */
+
+  /*
+  mounted(){
+      console.log('mounted');
+  },
+  */
+
+  /*
+  beforeDestroy(){
+      console.log('before destroy');
+  },
+  destroyed(){
+      console.log('destroyed');
+  },
+  */
+
 });
 
 /***/ }),
@@ -37945,10 +37999,17 @@ var render = function () {
     [
       _c("bookable-list-item", {
         attrs: {
-          "item-title": "What is Lorem Ipsum",
-          "item-content":
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic",
+          "item-title": _vm.bookable1.title,
+          "item-content": _vm.bookable1.content,
           price: 10000,
+        },
+      }),
+      _vm._v(" "),
+      _c("bookable-list-item", {
+        attrs: {
+          "item-title": _vm.bookable2.title,
+          "item-content": _vm.bookable2.content,
+          price: 12000,
         },
       }),
       _vm._v(" "),
